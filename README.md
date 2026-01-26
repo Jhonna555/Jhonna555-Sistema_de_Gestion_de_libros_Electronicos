@@ -57,7 +57,9 @@ go run ./cmd/app
 👨‍🎓 Autor
 
 Jhonnatan Francisco Salazar Cadena
+
 Carrera: Ingeniería en Software
+
 Materia: Programación Orientada a Objetos
 
 📝 Observaciones
