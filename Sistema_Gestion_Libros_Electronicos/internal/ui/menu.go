@@ -9,15 +9,14 @@ import (
 
 	"sistema_libros/internal/catalog"
 	"sistema_libros/internal/model"
-	"sistema_libros/internal/storage"
 )
 
-const dataPath = "data/libros.json"
-
-func Run() {
+// Run ejecuta la UI recibiendo un repositorio abstracto (interfaz).
+// Esto desacopla la UI del almacenamiento concreto (JSON, BD, etc.).
+func Run(repo model.BookRepository) {
 	reader := bufio.NewReader(os.Stdin)
 
-	books, err := storage.LoadBooks(dataPath)
+	books, err := repo.Load()
 	if err != nil {
 		fmt.Println("Error cargando datos:", err)
 		books = []model.Libro{}
@@ -42,23 +41,26 @@ func Run() {
 			books = uiDeleteBook(reader, books)
 		case 6:
 			books = uiToggleAvailability(reader, books)
+
 		case 7:
-			if err := storage.SaveBooks(dataPath, books); err != nil {
+			if err := repo.Save(books); err != nil {
 				fmt.Println("Error al guardar:", err)
 			} else {
-				fmt.Println("✅ Datos guardados en", dataPath)
+				fmt.Println("✅ Datos guardados.")
 			}
+
 		case 8:
-			loaded, err := storage.LoadBooks(dataPath)
+			loaded, err := repo.Load()
 			if err != nil {
 				fmt.Println("Error al cargar:", err)
 			} else {
 				books = loaded
-				fmt.Println("✅ Datos cargados desde", dataPath)
+				fmt.Println("✅ Datos cargados.")
 			}
+
 		case 0:
-			// guardado automático al salir (opcional, suma puntos)
-			_ = storage.SaveBooks(dataPath, books)
+			// Guardado automático al salir (suma puntos)
+			_ = repo.Save(books)
 			fmt.Println("Saliendo... ✅")
 			return
 		default:
@@ -80,8 +82,8 @@ func printMenu() {
 	fmt.Println("4) Editar libro")
 	fmt.Println("5) Eliminar libro")
 	fmt.Println("6) Cambiar disponibilidad")
-	fmt.Println("7) Guardar (JSON)")
-	fmt.Println("8) Cargar (JSON)")
+	fmt.Println("7) Guardar")
+	fmt.Println("8) Cargar")
 	fmt.Println("0) Salir")
 	fmt.Println("======================================")
 }
@@ -98,7 +100,7 @@ func uiAddBook(r *bufio.Reader, books []model.Libro) []model.Libro {
 	disponible := readBool(r, "¿Disponible? (s/n): ")
 
 	nuevo := model.Libro{
-		ID:         0, // se calcula automático
+		ID:         0, // se calcula automático en catalog.AddBook
 		Titulo:     titulo,
 		Autor:      autor,
 		Categoria:  categoria,

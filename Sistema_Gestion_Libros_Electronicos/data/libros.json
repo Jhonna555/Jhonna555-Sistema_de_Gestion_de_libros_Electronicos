@@ -1,202 +1,212 @@
 [
-    {
-        "id": 1,
-        "titulo": "El Principito",
-        "autor": "Antoine de Saint-Exupéry",
-        "categoria": "Literatura",
-        "anio": 1943,
-        "formato": "PDF",
-        "urlArchivo": "el_principito.pdf",
-        "disponible": true
-    },
-    {
-        "id": 2,
-        "titulo": "Cien años de soledad",
-        "autor": "Gabriel García Márquez",
-        "categoria": "Novela",
-        "anio": 1967,
-        "formato": "EPUB",
-        "urlArchivo": "cien_anos_de_soledad.epub",
-        "disponible": true
-    },
-    {
-        "id": 3,
-        "titulo": "Don Quijote de la Mancha",
-        "autor": "Miguel de Cervantes",
-        "categoria": "Clásico",
-        "anio": 1605,
-        "formato": "PDF",
-        "urlArchivo": "don_quijote.pdf",
-        "disponible": true
-    },
-    {
-        "id": 4,
-        "titulo": "La Odisea",
-        "autor": "Homero",
-        "categoria": "Épico",
-        "anio": -700,
-        "formato": "PDF",
-        "urlArchivo": "la_odisea.pdf",
-        "disponible": false
-    },
-    {
-        "id": 5,
-        "titulo": "1984",
-        "autor": "George Orwell",
-        "categoria": "Ciencia ficción",
-        "anio": 1949,
-        "formato": "EPUB",
-        "urlArchivo": "1984.epub",
-        "disponible": true
-    },
-    {
-        "id": 6,
-        "titulo": "Rebelión en la granja",
-        "autor": "George Orwell",
-        "categoria": "Política",
-        "anio": 1945,
-        "formato": "PDF",
-        "urlArchivo": "rebelion_granja.pdf",
-        "disponible": true
-    },
-    {
-        "id": 7,
-        "titulo": "Crimen y castigo",
-        "autor": "Fiódor Dostoyevski",
-        "categoria": "Novela",
-        "anio": 1866,
-        "formato": "EPUB",
-        "urlArchivo": "crimen_castigo.epub",
-        "disponible": false
-    },
-    {
-        "id": 8,
-        "titulo": "El señor de los anillos",
-        "autor": "J. R. R. Tolkien",
-        "categoria": "Fantasía",
-        "anio": 1954,
-        "formato": "PDF",
-        "urlArchivo": "senor_anillos.pdf",
-        "disponible": true
-    },
-    {
-        "id": 9,
-        "titulo": "El hobbit",
-        "autor": "J. R. R. Tolkien",
-        "categoria": "Fantasía",
-        "anio": 1937,
-        "formato": "EPUB",
-        "urlArchivo": "el_hobbit.epub",
-        "disponible": true
-    },
-    {
-        "id": 10,
-        "titulo": "Fahrenheit 451",
-        "autor": "Ray Bradbury",
-        "categoria": "Ciencia ficción",
-        "anio": 1953,
-        "formato": "PDF",
-        "urlArchivo": "fahrenheit_451.pdf",
-        "disponible": true
-    },
-    {
-        "id": 11,
-        "titulo": "Drácula",
-        "autor": "Bram Stoker",
-        "categoria": "Terror",
-        "anio": 1897,
-        "formato": "EPUB",
-        "urlArchivo": "dracula.epub",
-        "disponible": false
-    },
-    {
-        "id": 12,
-        "titulo": "Frankenstein",
-        "autor": "Mary Shelley",
-        "categoria": "Terror",
-        "anio": 1818,
-        "formato": "PDF",
-        "urlArchivo": "frankenstein.pdf",
-        "disponible": true
-    },
-    {
-        "id": 13,
-        "titulo": "Harry Potter y la piedra filosofal",
-        "autor": "J. K. Rowling",
-        "categoria": "Fantasía",
-        "anio": 1997,
-        "formato": "EPUB",
-        "urlArchivo": "harry_potter_1.epub",
-        "disponible": true
-    },
-    {
-        "id": 14,
-        "titulo": "El código Da Vinci",
-        "autor": "Dan Brown",
-        "categoria": "Suspenso",
-        "anio": 2003,
-        "formato": "PDF",
-        "urlArchivo": "codigo_da_vinci.pdf",
-        "disponible": false
-    },
-    {
-        "id": 15,
-        "titulo": "Los juegos del hambre",
-        "autor": "Suzanne Collins",
-        "categoria": "Distopía",
-        "anio": 2008,
-        "formato": "EPUB",
-        "urlArchivo": "juegos_hambre.epub",
-        "disponible": true
-    },
-    {
-        "id": 16,
-        "titulo": "La metamorfosis",
-        "autor": "Franz Kafka",
-        "categoria": "Literatura",
-        "anio": 1915,
-        "formato": "PDF",
-        "urlArchivo": "metamorfosis.pdf",
-        "disponible": true
-    },
-    {
-        "id": 17,
-        "titulo": "Orgullo y prejuicio",
-        "autor": "Jane Austen",
-        "categoria": "Romance",
-        "anio": 1813,
-        "formato": "EPUB",
-        "urlArchivo": "orgullo_prejuicio.epub",
-        "disponible": false
-    },
-    {
-        "id": 18,
-        "titulo": "El alquimista",
-        "autor": "Paulo Coelho",
-        "categoria": "Ficción",
-        "anio": 1988,
-        "formato": "PDF",
-        "urlArchivo": "el_alquimista.pdf",
-        "disponible": true
-    },
-    {
-        "id": 19,
-        "titulo": "Ensayo sobre la ceguera",
-        "autor": "José Saramago",
-        "categoria": "Novela",
-        "anio": 1995,
-        "formato": "EPUB",
-        "urlArchivo": "ceguera.epub",
-        "disponible": true
-    },
-    {
-        "id": 20,
-        "titulo": "El retrato de Dorian Gray",
-        "autor": "Oscar Wilde",
-        "categoria": "Clásico",
-        "anio": 1890,
-        "formato": "PDF",
-        "urlArchivo": "dorian_gray.pdf",
-        "disponible": false
-    }
+  {
+    "id": 1,
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "categoria": "Literatura",
+    "anio": 1943,
+    "formato": "PDF",
+    "urlArchivo": "el_principito.pdf",
+    "disponible": true
+  },
+  {
+    "id": 2,
+    "titulo": "Cien años de soledad",
+    "autor": "Gabriel García Márquez",
+    "categoria": "Novela",
+    "anio": 1967,
+    "formato": "EPUB",
+    "urlArchivo": "cien_anos_de_soledad.epub",
+    "disponible": true
+  },
+  {
+    "id": 3,
+    "titulo": "Don Quijote de la Mancha",
+    "autor": "Miguel de Cervantes",
+    "categoria": "Clásico",
+    "anio": 1605,
+    "formato": "PDF",
+    "urlArchivo": "don_quijote.pdf",
+    "disponible": true
+  },
+  {
+    "id": 4,
+    "titulo": "La Odisea",
+    "autor": "Homero",
+    "categoria": "Épico",
+    "anio": -700,
+    "formato": "PDF",
+    "urlArchivo": "la_odisea.pdf",
+    "disponible": false
+  },
+  {
+    "id": 5,
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "categoria": "Ciencia ficción",
+    "anio": 1949,
+    "formato": "EPUB",
+    "urlArchivo": "1984.epub",
+    "disponible": true
+  },
+  {
+    "id": 6,
+    "titulo": "Rebelión en la granja",
+    "autor": "George Orwell",
+    "categoria": "Política",
+    "anio": 1945,
+    "formato": "PDF",
+    "urlArchivo": "rebelion_granja.pdf",
+    "disponible": true
+  },
+  {
+    "id": 7,
+    "titulo": "Crimen y castigo",
+    "autor": "Fiódor Dostoyevski",
+    "categoria": "Novela",
+    "anio": 1866,
+    "formato": "EPUB",
+    "urlArchivo": "crimen_castigo.epub",
+    "disponible": false
+  },
+  {
+    "id": 8,
+    "titulo": "El señor de los anillos",
+    "autor": "J. R. R. Tolkien",
+    "categoria": "Fantasía",
+    "anio": 1954,
+    "formato": "PDF",
+    "urlArchivo": "senor_anillos.pdf",
+    "disponible": true
+  },
+  {
+    "id": 9,
+    "titulo": "El hobbit",
+    "autor": "J. R. R. Tolkien",
+    "categoria": "Fantasía",
+    "anio": 1937,
+    "formato": "EPUB",
+    "urlArchivo": "el_hobbit.epub",
+    "disponible": true
+  },
+  {
+    "id": 10,
+    "titulo": "Fahrenheit 451",
+    "autor": "Ray Bradbury",
+    "categoria": "Ciencia ficción",
+    "anio": 1953,
+    "formato": "PDF",
+    "urlArchivo": "fahrenheit_451.pdf",
+    "disponible": true
+  },
+  {
+    "id": 11,
+    "titulo": "Drácula",
+    "autor": "Bram Stoker",
+    "categoria": "Terror",
+    "anio": 1897,
+    "formato": "EPUB",
+    "urlArchivo": "dracula.epub",
+    "disponible": false
+  },
+  {
+    "id": 12,
+    "titulo": "Frankenstein",
+    "autor": "Mary Shelley",
+    "categoria": "Terror",
+    "anio": 1818,
+    "formato": "PDF",
+    "urlArchivo": "frankenstein.pdf",
+    "disponible": true
+  },
+  {
+    "id": 13,
+    "titulo": "Harry Potter y la piedra filosofal",
+    "autor": "J. K. Rowling",
+    "categoria": "Fantasía",
+    "anio": 1997,
+    "formato": "EPUB",
+    "urlArchivo": "harry_potter_1.epub",
+    "disponible": true
+  },
+  {
+    "id": 14,
+    "titulo": "El código Da Vinci",
+    "autor": "Dan Brown",
+    "categoria": "Suspenso",
+    "anio": 2003,
+    "formato": "PDF",
+    "urlArchivo": "codigo_da_vinci.pdf",
+    "disponible": false
+  },
+  {
+    "id": 15,
+    "titulo": "Los juegos del hambre",
+    "autor": "Suzanne Collins",
+    "categoria": "Distopía",
+    "anio": 2008,
+    "formato": "EPUB",
+    "urlArchivo": "juegos_hambre.epub",
+    "disponible": true
+  },
+  {
+    "id": 16,
+    "titulo": "La metamorfosis",
+    "autor": "Franz Kafka",
+    "categoria": "Literatura",
+    "anio": 1915,
+    "formato": "PDF",
+    "urlArchivo": "metamorfosis.pdf",
+    "disponible": true
+  },
+  {
+    "id": 17,
+    "titulo": "Orgullo y prejuicio",
+    "autor": "Jane Austen",
+    "categoria": "Romance",
+    "anio": 1813,
+    "formato": "EPUB",
+    "urlArchivo": "orgullo_prejuicio.epub",
+    "disponible": false
+  },
+  {
+    "id": 18,
+    "titulo": "El alquimista",
+    "autor": "Paulo Coelho",
+    "categoria": "Ficción",
+    "anio": 1988,
+    "formato": "PDF",
+    "urlArchivo": "el_alquimista.pdf",
+    "disponible": true
+  },
+  {
+    "id": 19,
+    "titulo": "Ensayo sobre la ceguera",
+    "autor": "José Saramago",
+    "categoria": "Novela",
+    "anio": 1995,
+    "formato": "EPUB",
+    "urlArchivo": "ceguera.epub",
+    "disponible": true
+  },
+  {
+    "id": 20,
+    "titulo": "El retrato de Dorian Gray",
+    "autor": "Oscar Wilde",
+    "categoria": "Clásico",
+    "anio": 1890,
+    "formato": "PDF",
+    "urlArchivo": "dorian_gray.pdf",
+    "disponible": false
+  },
+  {
+    "id": 21,
+    "titulo": "Caminar y Adelgazar",
+    "autor": "Charo Sierra",
+    "categoria": "Bienestar",
+    "anio": 2023,
+    "formato": "EPUB",
+    "urlArchivo": "https://espaebook.net/book/caminar-y-adelgazar/",
+    "disponible": true
+  }
 ]

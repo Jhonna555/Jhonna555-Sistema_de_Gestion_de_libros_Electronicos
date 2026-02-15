@@ -8,16 +8,24 @@ import (
 	"sistema_libros/internal/model"
 )
 
-func SaveBooks(path string, books []model.Libro) error {
+// JSONStore implementa model.BookRepository usando un archivo JSON.
+type JSONStore struct {
+	Path string
+}
+
+// Save guarda los libros en el archivo JSON.
+func (s JSONStore) Save(books []model.Libro) error {
 	data, err := json.MarshalIndent(books, "", "  ")
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(path, data, 0644)
+	return os.WriteFile(s.Path, data, 0644)
 }
 
-func LoadBooks(path string) ([]model.Libro, error) {
-	_, err := os.Stat(path)
+// Load carga los libros desde el archivo JSON.
+// Si el archivo no existe o está vacío, retorna slice vacío sin error.
+func (s JSONStore) Load() ([]model.Libro, error) {
+	_, err := os.Stat(s.Path)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
 			return []model.Libro{}, nil
@@ -25,7 +33,7 @@ func LoadBooks(path string) ([]model.Libro, error) {
 		return nil, err
 	}
 
-	data, err := os.ReadFile(path)
+	data, err := os.ReadFile(s.Path)
 	if err != nil {
 		return nil, err
 	}

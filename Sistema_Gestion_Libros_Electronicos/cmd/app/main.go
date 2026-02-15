@@ -1,7 +1,11 @@
 package main
 
-import "sistema_libros/internal/ui"
+import (
+	"sistema_libros/internal/storage"
+	"sistema_libros/internal/ui"
+)
 
 func main() {
-	ui.Run()
+	repo := storage.JSONStore{Path: "data/libros.json"}
+	ui.Run(repo)
 }
