@@ -1,67 +1,200 @@
-📘 Sistema de Gestión de Libros Electrónicos
+📘 SISTEMA DE GESTIÓN DE LIBROS ELECTRÓNICOS
 
-📌 Descripción del Proyecto
+============================================================
+DESCRIPCIÓN GENERAL
+============================================================
 
-Este proyecto corresponde al desarrollo de un Sistema de Gestión de Libros Electrónicos, implementado en el lenguaje de programación Go, como parte del Aprendizaje Autónomo 1 de la asignatura Programación Orientada a Objetos.
+El Sistema de Gestión de Libros Electrónicos es una aplicación backend 
+desarrollada en Go (Golang) que permite administrar un catálogo de libros 
+electrónicos mediante una arquitectura por capas, exposición de servicios 
+REST y persistencia en SQL Server.
 
-El sistema permite administrar un catálogo de libros electrónicos mediante operaciones básicas de gestión, aplicando conceptos de Programación Orientada a Objetos, programación funcional y organización modular mediante paquetes.
+El sistema implementa operaciones CRUD completas, funcionalidades de búsqueda 
+y estadísticas, control de concurrencia y pruebas automatizadas, cumpliendo 
+con los principios de Programación Orientada a Objetos y buenas prácticas 
+de arquitectura backend.
 
-🎯 Objetivo del Sistema
+Proyecto desarrollado como parte del Proyecto Final Integrador de la 
+asignatura Programación Orientada a Objetos.
 
-Desarrollar un sistema que permita gestionar libros electrónicos, facilitando el registro, consulta, búsqueda, edición y eliminación de información, así como la persistencia de datos mediante archivos en formato JSON.
 
-🧩 Funcionalidades
+============================================================
+OBJETIVOS DEL PROYECTO
+============================================================
 
-Registro de libros electrónicos
+- Implementar una aplicación web funcional con API REST.
+- Aplicar principios de Programación Orientada a Objetos.
+- Implementar mínimo 8 servicios REST.
+- Integrar persistencia en SQL Server.
+- Implementar control de concurrencia.
+- Desarrollar pruebas unitarias, integración y aceptación.
+- Documentar técnicamente el sistema.
 
-Listado de libros almacenados
 
-Búsqueda por título, autor o categoría
+============================================================
+ARQUITECTURA DEL SISTEMA
+============================================================
 
-Edición de información de libros
+Navegador (Frontend HTML)
+        ↓
+API REST (net/http)
+        ↓
+Catalog (Lógica de negocio)
+        ↓
+BookRepository (Interfaz)
+        ↓
+SQLServerStore (Persistencia)
+        ↓
+SQL Server
 
-Eliminación de libros del sistema
 
-Cambio del estado de disponibilidad
+============================================================
+ESTRUCTURA DEL PROYECTO
+============================================================
 
-Guardado y carga de información en archivos JSON
+Sistema_Gestion_Libros_Electronicos/
+│
+├── backup/                  # Respaldo de la base de datos (.bak)
+├── cmd/
+│   ├── app/                 # Versión consola
+│   └── server/              # Servidor HTTP
+│
+├── internal/
+│   ├── model/               # Modelo Libro
+│   ├── catalog/             # Lógica de negocio
+│   ├── storage/             # Implementación SQL Server
+│   ├── api/                 # Handlers y router
+│
+├── web/                     # Frontend HTML
+│
+├── go.mod
+├── go.sum
+└── README.txt
 
-🧱 Estructura del Proyecto
-cmd/app            → Punto de entrada del sistema
-internal/model     → Estructuras de datos (Libro)
-internal/catalog   → Lógica de negocio
-internal/storage   → Persistencia de datos (JSON)
-internal/ui        → Interfaz de usuario (menú en consola)
-data/              → Archivos de almacenamiento
 
-⚙️ Tecnologías Utilizadas
+============================================================
+FUNCIONALIDADES IMPLEMENTADAS
+============================================================
 
-Lenguaje de programación: Go
+- Crear libros electrónicos.
+- Listar todos los libros.
+- Obtener libro por ID.
+- Actualizar información.
+- Eliminar libros.
+- Cambiar estado de disponibilidad.
+- Buscar libros por criterio.
+- Consultar estadísticas del catálogo.
 
-Paradigmas aplicados: Programación Orientada a Objetos y Programación Funcional
 
-Persistencia de datos: Archivos JSON
+============================================================
+ENDPOINTS REST
+============================================================
 
-Control de versiones: Git y GitHub
+GET    /api/libros
+GET    /api/libros/{id}
+POST   /api/libros
+PUT    /api/libros/{id}
+DELETE /api/libros/{id}
+PATCH  /api/libros/{id}/disponible
+GET    /api/libros/buscar
+GET    /api/estadisticas
 
-▶️ Ejecución del Proyecto
 
-Para ejecutar el sistema, ubíquese en la carpeta raíz del proyecto y ejecute el siguiente comando:
+============================================================
+BASE DE DATOS
+============================================================
 
-go run ./cmd/app
+El sistema utiliza SQL Server como motor de persistencia.
 
-📁 Repositorio GitHub
+Tabla principal:
 
-🔗 https://github.com/Jhonna555/Jhonna555-Sistema_de_Gestion_de_libros_Electronicos.git
+CREATE TABLE Libros (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    titulo NVARCHAR(255) NOT NULL,
+    autor NVARCHAR(255) NOT NULL,
+    anio INT NOT NULL,
+    disponible BIT NOT NULL
+);
 
-👨‍🎓 Autor
+
+------------------------------------------------------------
+Restaurar Base de Datos
+------------------------------------------------------------
+
+1. Abrir SQL Server Management Studio.
+2. Click derecho en "Bases de datos".
+3. Seleccionar "Restaurar base de datos".
+4. Elegir "Dispositivo".
+5. Agregar el archivo ubicado en /backup/BibliotecaDB.bak.
+6. Restaurar.
+7. Ejecutar el servidor Go.
+
+
+============================================================
+CÓMO EJECUTAR EL PROYECTO
+============================================================
+
+1. Restaurar la base de datos.
+2. Verificar cadena de conexión en sqlserver_store.go.
+3. Ejecutar desde la raíz:
+
+   go run ./cmd/server
+
+Servidor disponible en:
+
+   http://localhost:8080
+
+
+============================================================
+PRUEBAS
+============================================================
+
+Ejecutar pruebas unitarias:
+
+   go test ./... -v
+
+Las pruebas validan:
+- Inserción
+- Actualización
+- Eliminación
+- Búsqueda
+- Cambio de disponibilidad
+
+
+============================================================
+TECNOLOGÍAS UTILIZADAS
+============================================================
+
+- Go (Golang)
+- SQL Server
+- net/http
+- sync.RWMutex (Concurrencia)
+- Arquitectura REST
+- Git & GitHub
+
+
+============================================================
+CONCURRENCIA
+============================================================
+
+El sistema implementa control de concurrencia mediante sync.RWMutex
+para permitir múltiples lecturas simultáneas y proteger operaciones
+de escritura, evitando condiciones de carrera.
+
+
+============================================================
+AUTOR
+============================================================
 
 Jhonnatan Francisco Salazar Cadena
+Ingeniería en Software
+Programación Orientada a Objetos
 
-Carrera: Ingeniería en Software
 
-Materia: Programación Orientada a Objetos
+============================================================
+NOTA FINAL
+============================================================
 
-📝 Observaciones
-
-Este proyecto fue desarrollado con fines académicos, siguiendo las instrucciones establecidas para la planificación y diseño de un sistema de gestión empresarial.
+El código fuente completo, pruebas, documentación y respaldo de la
+base de datos se encuentran disponibles en este repositorio para
+su revisión y ejecución.
