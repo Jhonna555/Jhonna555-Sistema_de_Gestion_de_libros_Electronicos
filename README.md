@@ -171,8 +171,8 @@ de carrera.
 
 AUTOR
 ------------------------------------------------------------
-Jhonnatan Francisco Salazar Cadena
-Ingeniería en Software
+Jhonnatan Francisco Salazar Cadena -
+Ingeniería en Software -
 Programación Orientada a Objetos
 
 
