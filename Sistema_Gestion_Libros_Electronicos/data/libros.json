@@ -198,15 +198,5 @@
     "formato": "PDF",
     "urlArchivo": "dorian_gray.pdf",
     "disponible": false
-  },
-  {
-    "id": 21,
-    "titulo": "Caminar y Adelgazar",
-    "autor": "Charo Sierra",
-    "categoria": "Bienestar",
-    "anio": 2023,
-    "formato": "EPUB",
-    "urlArchivo": "https://espaebook.net/book/caminar-y-adelgazar/",
-    "disponible": true
   }
 ]

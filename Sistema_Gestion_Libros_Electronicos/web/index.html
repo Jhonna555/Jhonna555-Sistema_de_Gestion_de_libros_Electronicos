@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sistema de Gestión de E-Books</title>
+  <style>
+    body {
+      font-family: system-ui, Arial;
+      max-width: 1000px;
+      margin: 24px auto;
+      padding: 0 12px
+    }
+
+    h1 {
+      margin: 0 0 12px
+    }
+
+    .row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center
+    }
+
+    input,
+    select,
+    button {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #eee;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    .badge {
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      font-size: 12px
+    }
+
+    .ok {
+      background: #eaffea
+    }
+
+    .no {
+      background: #ffeaea
+    }
+
+    .card {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 12px;
+      margin: 12px 0
+    }
+
+    .muted {
+      color: #666
+    }
+
+    .actions button {
+      margin-right: 6px
+    }
+  </style>
+</head>
+
+<body>
+  <h1>📚 Sistema de Gestión de E-Books</h1>
+  <p class="muted">Frontend simple (HTML) consumiendo tu API Go en <code>/api</code>.</p>
+
+  <div class="card">
+    <div class="row">
+      <input id="q" placeholder="Buscar (título, autor, categoría)..." style="flex:1;min-width:240px">
+      <button onclick="buscar()">🔎 Buscar</button>
+      <button onclick="cargar()">↻ Recargar</button>
+      <button onclick="verStats()">📊 Estadísticas</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>➕ Agregar libro</h3>
+    <div class="row">
+      <input id="titulo" placeholder="Título" style="flex:1;min-width:220px">
+      <input id="autor" placeholder="Autor" style="flex:1;min-width:220px">
+      <input id="categoria" placeholder="Categoría" style="width:160px">
+      <input id="anio" placeholder="Año" type="number" style="width:120px">
+      <select id="formato" style="width:120px">
+        <option>PDF</option>
+        <option>EPUB</option>
+      </select>
+      <input id="url" placeholder="urlArchivo (ej: libro.pdf)" style="flex:1;min-width:220px">
+      <select id="disp" style="width:150px">
+        <option value="true">Disponible</option>
+        <option value="false">No disponible</option>
+      </select>
+      <button onclick="crear()">Guardar</button>
+    </div>
+    <p id="msg" class="muted"></p>
+  </div>
+
+  <div id="stats" class="card" style="display:none"></div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Categoría</th>
+        <th>Año</th>
+        <th>Formato</th>
+        <th>Disponible</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+  <script>
+    const API = "/api";
+
+    function setMsg(t) { document.getElementById("msg").textContent = t || ""; }
+
+    async function cargar() {
+      setMsg("Cargando...");
+      document.getElementById("stats").style.display = "none";
+      const res = await fetch(`${API}/libros`);
+      const data = await res.json();
+      render(data);
+      setMsg(`Listo. Libros: ${data.length}`);
+    }
+
+    async function buscar() {
+      const q = document.getElementById("q").value.trim();
+      if (!q) { return cargar(); }
+      setMsg("Buscando...");
+      const res = await fetch(`${API}/libros/buscar?q=` + encodeURIComponent(q));
+      const data = await res.json();
+      render(data);
+      setMsg(`Resultados: ${data.length}`);
+    }
+
+    function render(libros) {
+      const tb = document.getElementById("tbody");
+      tb.innerHTML = "";
+      for (const b of libros) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+      <td>${b.id}</td>
+      <td><b>${escapeHtml(b.titulo)}</b><br><span class="muted">${escapeHtml(b.urlArchivo || "")}</span></td>
+      <td>${escapeHtml(b.autor)}</td>
+      <td>${escapeHtml(b.categoria)}</td>
+      <td>${b.anio}</td>
+      <td>${escapeHtml(b.formato)}</td>
+      <td>${b.disponible ? '<span class="badge ok">Sí</span>' : '<span class="badge no">No</span>'}</td>
+      <td class="actions">
+        <button onclick="toggle(${b.id})">Cambiar</button>
+        <button onclick="del(${b.id})">Eliminar</button>
+      </td>
+    `;
+        tb.appendChild(tr);
+      }
+    }
+
+    async function crear() {
+      const payload = {
+        titulo: document.getElementById("titulo").value.trim(),
+        autor: document.getElementById("autor").value.trim(),
+        categoria: document.getElementById("categoria").value.trim(),
+        anio: parseInt(document.getElementById("anio").value, 10),
+        formato: document.getElementById("formato").value,
+        urlArchivo: document.getElementById("url").value.trim(),
+        disponible: document.getElementById("disp").value === "true"
+      };
+
+      setMsg("Guardando...");
+      const res = await fetch(`${API}/libros`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setMsg(`Error: ${data.error || "no se pudo crear"} (${data.detail || ""})`);
+        return;
+      }
+
+      // limpiar campos
+      ["titulo", "autor", "categoria", "anio", "url"].forEach(id => document.getElementById(id).value = "");
+      document.getElementById("disp").value = "true";
+
+      setMsg(`Creado ID ${data.id}`);
+      await cargar();
+    }
+
+    async function toggle(id) {
+      setMsg("Actualizando disponibilidad...");
+      const res = await fetch(`${API}/libros/${id}/disponible`, { method: "PATCH" });
+      const data = await res.json();
+      if (!res.ok) {
+        setMsg(`Error: ${data.error || "no se pudo cambiar"} (${data.detail || ""})`);
+        return;
+      }
+      setMsg(`Disponibilidad actualizada (ID ${id})`);
+      await cargar();
+    }
+
+    async function del(id) {
+      if (!confirm("¿Eliminar libro ID " + id + "?")) return;
+      setMsg("Eliminando...");
+      const res = await fetch(`${API}/libros/${id}`, { method: "DELETE" });
+      if (res.status !== 204) {
+        const data = await res.json().catch(() => ({}));
+        setMsg(`Error: ${data.error || "no se pudo eliminar"}`);
+        return;
+      }
+      setMsg(`Eliminado ID ${id}`);
+      await cargar();
+    }
+
+    async function verStats() {
+      setMsg("Cargando estadísticas...");
+      const res = await fetch(`${API}/estadisticas`);
+      const st = await res.json();
+      const box = document.getElementById("stats");
+      box.style.display = "block";
+      box.innerHTML = `
+    <h3>📊 Estadísticas</h3>
+    <p>Total: <b>${st.total}</b> | Disponibles: <b>${st.disponibles}</b> | No disponibles: <b>${st.noDisponibles}</b></p>
+    <p><b>Por categoría</b>: ${Object.entries(st.porCategoria || {}).map(([k, v]) => `${escapeHtml(k)} (${v})`).join(", ")}</p>
+    <p><b>Por formato</b>: ${Object.entries(st.porFormato || {}).map(([k, v]) => `${escapeHtml(k)} (${v})`).join(", ")}</p>
+  `;
+      setMsg("");
+    }
+
+    function escapeHtml(s) {
+      return String(s ?? "").replace(/[&<>"']/g, m => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+      }[m]));
+    }
+
+    cargar();
+  </script>
+</body>
+
+</html>
