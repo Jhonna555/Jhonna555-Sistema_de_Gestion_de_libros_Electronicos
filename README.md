@@ -54,18 +54,18 @@ ESTRUCTURA DEL PROYECTO
 
 Sistema_Gestion_Libros_Electronicos/
 │
-├── backup/                  # Respaldo de la base de datos (.bak)
+├── backup/
 ├── cmd/
-│   ├── app/                 # Versión consola
-│   └── server/              # Servidor HTTP
+│   ├── app/
+│   └── server/
 │
 ├── internal/
-│   ├── model/               # Modelo Libro
-│   ├── catalog/             # Lógica de negocio
-│   ├── storage/             # Implementación SQL Server
-│   ├── api/                 # Handlers y router
+│   ├── model/
+│   ├── catalog/
+│   ├── storage/
+│   ├── api/
 │
-├── web/                     # Frontend HTML
+├── web/
 │
 ├── go.mod
 ├── go.sum
