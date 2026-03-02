@@ -46,18 +46,29 @@ SQL Server
 
 ESTRUCTURA DEL PROYECTO
 ------------------------------------------------------------
+
+```
 Sistema_Gestion_Libros_Electronicos/
-|-- cmd/
-|   |-- app/
-|   |-- server/
-|-- internal/
-|   |-- model/
-|   |-- catalog/
-|   |-- storage/
-|   |-- api/
-|-- web/
-|-- go.mod
-|-- go.sum
+│
+├── backup/
+│   └── BibliotecaDB.bak
+│
+├── cmd/
+│   ├── app/
+│   └── server/
+│
+├── internal/
+│   ├── model/
+│   ├── catalog/
+│   ├── storage/
+│   └── api/
+│
+├── web/
+│   └── index.html
+│
+├── go.mod
+└── go.sum
+```
 
 
 FUNCIONALIDADES IMPLEMENTADAS
@@ -74,14 +85,17 @@ FUNCIONALIDADES IMPLEMENTADAS
 
 ENDPOINTS REST
 ------------------------------------------------------------
-GET     /api/libros
-GET     /api/libros/{id}
-POST    /api/libros
-PUT     /api/libros/{id}
-DELETE  /api/libros/{id}
-PATCH   /api/libros/{id}/disponible
-GET     /api/libros/buscar
-GET     /api/estadisticas
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| GET    | /api/libros | Obtener todos los libros |
+| GET    | /api/libros/{id} | Obtener libro por ID |
+| POST   | /api/libros | Crear nuevo libro |
+| PUT    | /api/libros/{id} | Actualizar libro completo |
+| DELETE | /api/libros/{id} | Eliminar libro |
+| PATCH  | /api/libros/{id}/disponible | Cambiar disponibilidad |
+| GET    | /api/libros/buscar | Buscar libros |
+| GET    | /api/estadisticas | Obtener estadísticas del catálogo |
 
 
 BASE DE DATOS
